@@ -28,8 +28,16 @@ const PaginaInicial = () => {
             <h2>Informe seu Gênero de interesse</h2>
             <form>
               <div className="mb-3">
-                <label className="form-label">Gênero:</label>
-                <input className="form-control" type="text" value={genero} onChange={(e) => {handleGeneroChange(e); setDisabledCard(true)}}/>
+                <select className="form-select" aria-label="Default select example" onChange={(e) => {handleGeneroChange(e); setDisabledCard(true)}}>
+                  <option value="">Gênero</option>
+                  <option value="Drama">Drama</option>
+                  <option value="Romance">Romance</option>
+                  <option value="Policial">Policial</option>
+                  <option value="Suspense">Suspense</option>
+                  <option value="Faroeste">Faroeste</option>
+                  <option value="Comedia">Comédia</option>
+                  <option value="Terror">Terror</option>
+                </select>
               </div>
               <div className="text-center"><button type="button" value="submit" className="btn btn-primary" onClick={(e) => {handleSubmit(e)}}>Buscar Filmes</button></div>
             </form>
