@@ -15,7 +15,7 @@ const PaginaInicial = () => {
         setDisabledCard(false);
 
         try {
-          const response = await axios.get('http://127.0.0.1:1026/v2/entities?type=Filme&q=genero=='+ genero);
+          const response = await axios.get('http://localhost:3000/fpg/filmes/gen='+ genero);
           setFilmes(response.data);
         } catch (error) {
           console.error('Erro ao buscar filmes:', error);
