@@ -1,5 +1,6 @@
-FROM openjdk:17
-EXPOSE 8080
-ARG JAR_FILE=target/filmesporgenero-backend-0.0.1-SNAPSHOT.jar
-ADD ${JAR_FILE} main.jar
-ENTRYPOINT ["java","-jar","/main.jar"]
+FROM node:18
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+CMD [ "node", "src/index.js" ]
