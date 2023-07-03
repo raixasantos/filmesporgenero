@@ -44,6 +44,10 @@ class Controller {
         }
     }
     async notificarGenero(request, response) {
+        const result = await Service.verificarGenero(request.body);
+        if (result == true) {
+            return response.status(200).json(request.body);
+        }
     }
 }
 
