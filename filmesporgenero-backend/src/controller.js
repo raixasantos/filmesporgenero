@@ -2,19 +2,9 @@ const Service = require('./services');
 
 class Controller { 
     async assinarGenero(request, response) {
-        try {
-            const result = await Service.assinarGenero();
-            return response.status(200).json(result);
-        } catch (err) {
-            return response.status(400).json({
-                error: err
-            });
-        }
-    }
-    async desassinarGenero(request, response) {
         const { value } = request.params;
         try {
-            const result = await Service.desassinarGenero(value);
+            const result = await Service.assinarGenero(value);
             return response.status(200).json(result);
         } catch (err) {
             return response.status(400).json({
