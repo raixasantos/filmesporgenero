@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { handleSetting } from '../servico/funcao';
 
 const PaginaInicial = () => {
@@ -13,7 +14,7 @@ const PaginaInicial = () => {
     
     useEffect(() => {
       if(genero !== ''){ handleSetting(setFilmes, genero);}
-    }, []);
+    });
     
     const handleSubmit = async (event) => {
         event.preventDefault();
