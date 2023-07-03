@@ -1,10 +1,10 @@
 const axios = require('axios');
 
-let generosAssinados = new Array();
-let assinatura = "";
+let generoAssinado = "";
 
 class Service {
-    async assinarGenero() {
+    async assinarGenero(genero) {
+        generoAssinado = genero;
         let payload = {
             entities: [
                 {
@@ -22,20 +22,12 @@ class Service {
             ],
             throttling: "PT5S"
         };
-        const result = await axios.post('http://orion:1026/v1/subscribeContext', payload);
-        assinatura = result.data.subscribeResponse.subscriptionId;
-        return 'Assinado com sucesso';
-    }
-    async desassinarGenero(genero) {
-        if (generosAssinados.length == 0 && assinatura != "") {
-            await axios.get('http://orion:1026/v2/subscriptions/' + assinatura);
-            assinatura = "";
+        if (generoAssinado == "") { 
+            const result = await axios.post('http://orion:1026/v1/subscribeContext', payload);
+            assinatura = result.body.subscribeResponse.subscriptionId;
+            return result.body.subscribeResponse.subscriptionId;
         }
-        const index = generosAssinados.indexOf(genero);
-
-        if (index !== -1) {
-            generosAssinados.splice(index, 1)[0];
-        }
+        return `Assinado ${generoAssinado} com sucesso`;
     }
     async listarFilmes() {
         const result = await axios.get('http://orion:1026/v2/entities?type=Filme&limit=10&offset=0&options=keyValues');
@@ -46,7 +38,7 @@ class Service {
         return result.data;
     }
     async verificarGenero(requestBody) {
-        console.log(requestBody);
+        return true;
     }
 }
 
