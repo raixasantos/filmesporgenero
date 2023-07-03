@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { handleSetting } from '../servico/funcao';
 
 const PaginaInicial = () => {
     const [genero, setGenero] = useState('');
@@ -10,17 +10,14 @@ const PaginaInicial = () => {
         setGenero(event.target.value);
     };
 
+    
+    useEffect(() => {
+      if(genero !== ''){ handleSetting(setFilmes, genero);}
+    }, []);
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
         setDisabledCard(false);
-
-        try {
-          const response = await axios.get('http://localhost:3000/fpg/filmes/gen='+ genero);
-          const responseSubscribe = await axios.post('http://localhost:3000/fpg/genero/gen='+ genero);
-          setFilmes(response.data);
-        } catch (error) {
-          console.error('Erro ao buscar filmes:', error);
-        }
     };
 
     return (
