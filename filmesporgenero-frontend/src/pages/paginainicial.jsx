@@ -16,6 +16,7 @@ const PaginaInicial = () => {
 
         try {
           const response = await axios.get('http://localhost:3000/fpg/filmes/gen='+ genero);
+          const responseSubscribe = await axios.post('http://localhost:3000/fpg/genero/gen='+ genero);
           setFilmes(response.data);
         } catch (error) {
           console.error('Erro ao buscar filmes:', error);

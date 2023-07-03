@@ -38,11 +38,11 @@ const NotificationComponent = () => {
       });
     };
     fetchData();
-  }, []);
+  }, [data]);
 
   return (
     <div>
-      {alert(data)}
+      {data.lenght == 0 ? alert(data) : console.log(data)}
     </div>
   );
 };
